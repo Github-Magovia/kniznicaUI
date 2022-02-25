@@ -1,0 +1,50 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem="">
+    <a (click)="nastavMenu(menu.OSOBY)" ngbNavLink>OSOBY</a>
+    <ng-template ngbNavContent>
+      <div *ngIf="aktMenu == menu.OSOBY">
+        <br>
+        Id: <input type="number" [(ngModel)]="osoba.id" >
+        <br>
+        Meno: <input type="text" [(ngModel)]="osoba.meno">
+        <br>
+        Kontakt: <input type="email" [(ngModel)]="osoba.contact">
+        <br><br>
+        <button (click)="pridaj()">PRIDAJ</button>
+        <br><br>
+        <div class="container">
+          ZOZNAM:<br>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">MENO</th>
+              <th scope="col">KONTAKT</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let o of osoby">
+              <td>{{ o.id }}</td>
+              <td>{{ o.meno }}</td>
+              <td>{{ o.contact }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+  <li ngbNavItem="">
+    <a (click)="nastavMenu(menu.KNIHY)" ngbNavLink>KNIHY</a>
+    <ng-template ngbNavContent>
+      <!-- sem knihy-->
+    </ng-template>
+  </li>
+  <li ngbNavItem="">
+    <a (click)="nastavMenu(menu.VYPOZICKY)" ngbNavLink>VYPOZICKY</a>
+    <ng-template ngbNavContent>
+      <!-- sem vypozicky-->
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>
