@@ -11,7 +11,7 @@
         <br>
         Kontakt: <input type="email" [(ngModel)]="osoba.contact">
         <br><br>
-        <button mat-raised-button (click)="pridaj()">PRIDAJ</button>
+        <button mat-raised-button (click)="pridaj(menu.OSOBY)">PRIDAJ</button>
         </div>
         <br><br>
         <div class="container-fluid">
@@ -45,7 +45,38 @@
   <li ngbNavItem="">
     <a (click)="nastavMenu(menu.VYPOZICKY)" ngbNavLink>VYPOZICKY</a>
     <ng-template ngbNavContent>
-      <!-- sem vypozicky-->
+      <div *ngIf="aktMenu == menu.VYPOZICKY">
+        <br>
+        <div class="container-fluid">
+          Id: <input type="number" [(ngModel)]="vypozicka.id" >
+          <br>
+          Kniha (id): <input type="number" [(ngModel)]="vypozicka.kniha">
+          <br>
+          Pouzivatel (id): <input type="number" [(ngModel)]="vypozicka.pouzivatel">
+          <br><br>
+          <button mat-raised-button (click)="pridaj(menu.VYPOZICKY)">PRIDAJ</button>
+        </div>
+        <br><br>
+        <div class="container-fluid">
+          ZOZNAM:<br>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">KNIHA</th>
+              <th scope="col">POUŽÍVATEĽ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let v of vypozicky">
+              <td>{{ v.id }}</td>
+              <td>{{ v.kniha }}</td>
+              <td>{{ v.pouzivatel }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </ng-template>
   </li>
 </ul>

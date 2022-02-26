@@ -13,13 +13,42 @@ export class AppComponent {
   aktMenu = MENU.OSOBY;
   osoby:any = [];
   osoba = {id: '1', meno: 'Andrej Malý', contact: 'a.maly@gmail.com'}
+
+  vypozicky: any = [];
+  vypozicka = {id: 0, kniha: 0, pouzivatel: 0}
   public nastavMenu(m: MENU){
     this.aktMenu = m;
   }
 
 
-  public pridaj(){
-    let o2 = {id: this.osoba.id, meno: this.osoba.meno, contact: this.osoba.contact}
-    this.osoby.push(o2);
+  public pridaj(m: MENU){
+    switch (m) {
+      case MENU.OSOBY:
+        let o2 = {id: this.osoba.id, meno: this.osoba.meno, contact: this.osoba.contact}
+        this.osoby.push(o2);
+        break;
+      case MENU.VYPOZICKY:
+        this.vypozicky.push(this.sparujId());
+        break;
+      case MENU.KNIHY:
+        break;
+    }
+  }
+
+  private sparujId() {
+    let v = {id: this.vypozicka.id, kniha: this.vypozicka.kniha, pouzivatel: this.vypozicka.pouzivatel};
+    for (const osoba of this.osoby) {
+      if (osoba.id == v.pouzivatel) {
+        v.pouzivatel = osoba.meno;
+        break;
+      }
+    }
+    for (const kniha of this.knihy) {
+      if (kniha.id == v.kniha) {
+        v.kniha = kniha.nazov;
+        break;
+      }
+    }
+    return v;
   }
 }
