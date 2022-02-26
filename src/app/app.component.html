@@ -50,7 +50,7 @@
         <div class="container-fluid">
           Id: <input type="number" [(ngModel)]="vypozicka.id" >
           <br>
-          Kniha (id):
+          Kniha:
           <select [(ngModel)]="vypozicka.kniha">
             <option *ngFor="let k of knihy" [ngValue]="k.nazov">{{k.nazov}}</option>
           </select>
