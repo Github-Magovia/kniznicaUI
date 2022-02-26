@@ -39,7 +39,42 @@
   <li ngbNavItem="">
     <a (click)="nastavMenu(menu.KNIHY)" ngbNavLink>KNIHY</a>
     <ng-template ngbNavContent>
-      <!-- sem knihy-->
+      <div *ngIf="aktMenu == menu.KNIHY">
+        <br>
+        <div class="container-fluid">
+          Id: <input type="number" [(ngModel)]="kniha.id" >
+          <br>
+          Názov: <input type="text" [(ngModel)]="kniha.nazov">
+          <br>
+          Autor: <input type="text" [(ngModel)]="kniha.autor" >
+          <br>
+          Dostupnosť: <input type="text" [(ngModel)]="kniha.dostupnost">
+          <br><br>
+          <button mat-raised-button (click)="pridaj(menu.KNIHY)">PRIDAJ</button>
+        </div>
+        <br><br>
+        <div class="container-fluid">
+          ZOZNAM:<br>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">NAZOV</th>
+              <th scope="col">AUTOR</th>
+              <th scope="col">DOSTUPNOSŤ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let k of knihy">
+              <td>{{ k.id }}</td>
+              <td>{{ k.nazov }}</td>
+              <td>{{ k.autor }}</td>
+              <td>{{ k.dostupnost }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </ng-template>
   </li>
   <li ngbNavItem="">

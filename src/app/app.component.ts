@@ -15,6 +15,7 @@ export class AppComponent {
   osoba = {id: '1', meno: 'Andrej Malý', contact: 'a.maly@gmail.com'}
 
   knihy: any = []
+  kniha = {id: 0, nazov: 'Harry Potter', autor: 'J.K Rowling', dostupnost: 'ano'}
 
   vypozicky: any = [];
   vypozicka = {id: 0, kniha: 0, pouzivatel: 0}
@@ -34,6 +35,8 @@ export class AppComponent {
         this.vypozicky.push(v);
         break;
       case MENU.KNIHY:
+        let k = {id: this.kniha.id, nazov: this.kniha.nazov, autor: this.kniha.autor, dostupnost: this.kniha.dostupnost};
+        this.knihy.push(k);
         break;
     }
   }
