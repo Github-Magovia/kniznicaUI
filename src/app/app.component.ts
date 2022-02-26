@@ -14,6 +14,8 @@ export class AppComponent {
   osoby:any = [];
   osoba = {id: '1', meno: 'Andrej Malý', contact: 'a.maly@gmail.com'}
 
+  knihy: any = []
+
   vypozicky: any = [];
   vypozicka = {id: 0, kniha: 0, pouzivatel: 0}
   public nastavMenu(m: MENU){
@@ -28,14 +30,15 @@ export class AppComponent {
         this.osoby.push(o2);
         break;
       case MENU.VYPOZICKY:
-        this.vypozicky.push(this.sparujId());
+        let v = {id: this.vypozicka.id, kniha: this.vypozicka.kniha, pouzivatel: this.vypozicka.pouzivatel};
+        this.vypozicky.push(v);
         break;
       case MENU.KNIHY:
         break;
     }
   }
 
-  private sparujId() {
+  /*private sparujId() {
     let v = {id: this.vypozicka.id, kniha: this.vypozicka.kniha, pouzivatel: this.vypozicka.pouzivatel};
     for (const osoba of this.osoby) {
       if (osoba.id == v.pouzivatel) {
@@ -50,5 +53,5 @@ export class AppComponent {
       }
     }
     return v;
-  }
+  }*/
 }

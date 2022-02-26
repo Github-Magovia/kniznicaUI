@@ -50,9 +50,15 @@
         <div class="container-fluid">
           Id: <input type="number" [(ngModel)]="vypozicka.id" >
           <br>
-          Kniha (id): <input type="number" [(ngModel)]="vypozicka.kniha">
+          Kniha (id):
+          <select [(ngModel)]="vypozicka.kniha">
+            <option *ngFor="let k of knihy" [ngValue]="k.nazov">{{k.nazov}}</option>
+          </select>
           <br>
-          Pouzivatel (id): <input type="number" [(ngModel)]="vypozicka.pouzivatel">
+          Pouzivatel:
+          <select [(ngModel)]="vypozicka.pouzivatel">
+            <option *ngFor="let o of osoby" [ngValue]="o.meno">{{o.meno}}</option>
+          </select>
           <br><br>
           <button mat-raised-button (click)="pridaj(menu.VYPOZICKY)">PRIDAJ</button>
         </div>
