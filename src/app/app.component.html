@@ -1,0 +1,124 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem="">
+    <a (click)="nastavMenu(menu.OSOBY)" ngbNavLink>OSOBY</a>
+    <ng-template ngbNavContent>
+      <div *ngIf="aktMenu == menu.OSOBY">
+        <br>
+        <div class="container-fluid">
+        Id: <input type="number" [(ngModel)]="osoba.id" >
+        <br>
+        Meno: <input type="text" [(ngModel)]="osoba.meno">
+        <br>
+        Kontakt: <input type="email" [(ngModel)]="osoba.contact">
+        <br><br>
+        <button mat-raised-button (click)="pridaj(menu.OSOBY)">PRIDAJ</button>
+        </div>
+        <br><br>
+        <div class="container-fluid">
+          ZOZNAM:<br>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">MENO</th>
+              <th scope="col">KONTAKT</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let o of osoby">
+              <td>{{ o.id }}</td>
+              <td>{{ o.meno }}</td>
+              <td>{{ o.contact }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+  <li ngbNavItem="">
+    <a (click)="nastavMenu(menu.KNIHY)" ngbNavLink>KNIHY</a>
+    <ng-template ngbNavContent>
+      <div *ngIf="aktMenu == menu.KNIHY">
+        <br>
+        <div class="container-fluid">
+          Id: <input type="number" [(ngModel)]="kniha.id" >
+          <br>
+          Názov: <input type="text" [(ngModel)]="kniha.nazov">
+          <br>
+          Autor: <input type="text" [(ngModel)]="kniha.autor" >
+          <br>
+          Dostupnosť: <input type="text" [(ngModel)]="kniha.dostupnost">
+          <br><br>
+          <button mat-raised-button (click)="pridaj(menu.KNIHY)">PRIDAJ</button>
+        </div>
+        <br><br>
+        <div class="container-fluid">
+          ZOZNAM:<br>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">NAZOV</th>
+              <th scope="col">AUTOR</th>
+              <th scope="col">DOSTUPNOSŤ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let k of knihy">
+              <td>{{ k.id }}</td>
+              <td>{{ k.nazov }}</td>
+              <td>{{ k.autor }}</td>
+              <td>{{ k.dostupnost }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+  <li ngbNavItem="">
+    <a (click)="nastavMenu(menu.VYPOZICKY)" ngbNavLink>VYPOZICKY</a>
+    <ng-template ngbNavContent>
+      <div *ngIf="aktMenu == menu.VYPOZICKY">
+        <br>
+        <div class="container-fluid">
+          Id: <input type="number" [(ngModel)]="vypozicka.id" >
+          <br>
+          Kniha:
+          <select [(ngModel)]="vypozicka.kniha">
+            <option *ngFor="let k of knihy" [ngValue]="k.nazov">{{k.nazov}}</option>
+          </select>
+          <br>
+          Pouzivatel:
+          <select [(ngModel)]="vypozicka.pouzivatel">
+            <option *ngFor="let o of osoby" [ngValue]="o.meno">{{o.meno}}</option>
+          </select>
+          <br><br>
+          <button mat-raised-button (click)="pridaj(menu.VYPOZICKY)">PRIDAJ</button>
+        </div>
+        <br><br>
+        <div class="container-fluid">
+          ZOZNAM:<br>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">KNIHA</th>
+              <th scope="col">POUŽÍVATEĽ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let v of vypozicky">
+              <td>{{ v.id }}</td>
+              <td>{{ v.kniha }}</td>
+              <td>{{ v.pouzivatel }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>
