@@ -4,15 +4,17 @@
     <ng-template ngbNavContent>
       <div *ngIf="aktMenu == menu.OSOBY">
         <br>
+        <div class="container-fluid">
         Id: <input type="number" [(ngModel)]="osoba.id" >
         <br>
         Meno: <input type="text" [(ngModel)]="osoba.meno">
         <br>
         Kontakt: <input type="email" [(ngModel)]="osoba.contact">
         <br><br>
-        <button (click)="pridaj()">PRIDAJ</button>
+        <button mat-raised-button (click)="pridaj()">PRIDAJ</button>
+        </div>
         <br><br>
-        <div class="container">
+        <div class="container-fluid">
           ZOZNAM:<br>
           <table class="table table-striped">
             <thead>
