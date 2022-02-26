@@ -37,21 +37,4 @@ export class AppComponent {
         break;
     }
   }
-
-  /*private sparujId() {
-    let v = {id: this.vypozicka.id, kniha: this.vypozicka.kniha, pouzivatel: this.vypozicka.pouzivatel};
-    for (const osoba of this.osoby) {
-      if (osoba.id == v.pouzivatel) {
-        v.pouzivatel = osoba.meno;
-        break;
-      }
-    }
-    for (const kniha of this.knihy) {
-      if (kniha.id == v.kniha) {
-        v.kniha = kniha.nazov;
-        break;
-      }
-    }
-    return v;
-  }*/
 }
