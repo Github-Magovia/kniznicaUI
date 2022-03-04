@@ -1,0 +1,14 @@
+<div>
+  <div class="container-fluid">
+    Id: <input type="number" [(ngModel)]="vypozicka.id">
+    <br>
+    <!-- TODO spravit prepojenie medzi books / customers -->
+    Kniha:
+    <input type="number" [(ngModel)]="vypozicka.bookId">
+    <br>
+    Pouzivatel:
+    <input type="number" [(ngModel)]="vypozicka.customerId">
+    <br><br>
+    <button mat-raised-button (click)="pridajVypozicku()">PRIDAJ</button>
+  </div>
+</div>
