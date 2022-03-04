@@ -2,17 +2,12 @@
   <div class="container-fluid">
     Id: <input type="number" [(ngModel)]="vypozicka.id">
     <br>
+    <!-- TODO spravit prepojenie medzi books / customers -->
     Kniha:
     <input type="number" [(ngModel)]="vypozicka.bookId">
-<!--    <select [(ngModel)]="vypozicka.bookId">&ndash;&gt;-->
-<!--      <option *ngFor="let k of knihy" [ngValue]="k.nazov">{{k.nazov}}</option>-->
-<!--    </select>-->
-   <br>
+    <br>
     Pouzivatel:
     <input type="number" [(ngModel)]="vypozicka.customerId">
-<!--    <select [(ngModel)]="vypozicka.customerId">-->
-<!--      <option *ngFor="let o of osoby" [ngValue]="o.meno">{{o.meno}}</option>-->
-<!--    </select>-->
     <br><br>
     <button mat-raised-button (click)="pridajVypozicku()">PRIDAJ</button>
   </div>
