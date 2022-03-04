@@ -5,9 +5,9 @@ export class Customer{
   contact: String;
 
 
-  constructor(customer: Customer) {
-    this.id = customer.id;
-    this.meno = customer.meno;
-    this.contact = customer.contact;
+  constructor(id: number, meno: String, contact: String) {
+    this.id = id;
+    this.meno = meno;
+    this.contact = contact;
   }
 }

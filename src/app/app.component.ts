@@ -12,6 +12,7 @@ export class AppComponent {
   title = 'kniznicaUI';
   menu = MENU;
   osoby:any = [];
+  osoba = {id: 1, meno: 'Andrej Malý', contact: 'a.maly@gmail.com'}
 
   constructor(private router: Router) {
     //this.router.navigate([]); aby sa otvorila nejaka stranka pri nacitani?

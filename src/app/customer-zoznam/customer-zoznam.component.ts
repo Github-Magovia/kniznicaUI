@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import {Customer} from "../models/customer.model";
 
 @Component({
@@ -7,8 +7,12 @@ import {Customer} from "../models/customer.model";
   styleUrls: ['./customer-zoznam.component.css']
 })
 export class CustomerZoznamComponent{
+  @Input()customersz: Customer[] = [];
 
-  customers: Customer[] = [];
-  constructor() {}
+  constructor() { }
+
+  ngOnInit(): void {
+
+  }
 
 }

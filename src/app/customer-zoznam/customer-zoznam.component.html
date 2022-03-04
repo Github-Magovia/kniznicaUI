@@ -1,3 +1,19 @@
-<div *ngFor="let c of customers">
-    {{c.id}} {{c.meno}} {{c.contact}}
+<div class="container-fluid">
+  ZOZNAM:<br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">MENO</th>
+      <th scope="col">KONTAKT</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let c of customersz">
+      <td>{{ c.id }}</td>
+      <td>{{ c.meno }}</td>
+      <td>{{ c.contact }}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

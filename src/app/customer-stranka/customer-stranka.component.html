@@ -1,1 +1,3 @@
-<app-customer-formular></app-customer-formular>
+<app-customer-formular (customerEmitter)="spracujCustomera($event)"></app-customer-formular>
+<br>
+<app-customer-zoznam [customersz]="customers"></app-customer-zoznam>

@@ -1,4 +1,13 @@
-<h1>OSOBY:</h1>
-Id: <input type="number" [(ngModel)]="customer.id"> <br>
-Meno: <input type="text" [(ngModel)]="customer.meno"><br>
-Contact: <input type="text" [(ngModel)]="customer.contact"><br>
+<div>
+  <div class="container-fluid">
+    Id: <input type="number" [(ngModel)]="customer.id">
+    <br>
+    Meno:
+    <input type="text" [(ngModel)]="customer.meno">
+    <br>
+    Kontakt:
+    <input type="text" [(ngModel)]="customer.contact">
+    <br><br>
+    <button mat-raised-button (click)="pridajCustomera()">PRIDAJ</button>
+  </div>
+</div>
