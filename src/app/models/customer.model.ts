@@ -1,6 +1,6 @@
 export class Customer{
 
-  id: String;
+  id: number;
   meno: String;
   contact: String;
 

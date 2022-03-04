@@ -7,7 +7,7 @@ import {Customer} from "../models/customer.model";
   styleUrls: ['./customer-formular.component.css']
 })
 export class CustomerFormularComponent{
-  customer: Customer = {id: '0',meno: 'dadasd', contact: 'example@gmail.com'}
+  customer: Customer = {id: 0,meno: 'dadasd', contact: 'example@gmail.com'}
   constructor() {}
 
 }
