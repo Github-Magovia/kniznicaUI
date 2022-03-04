@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 enum MENU{OSOBY, KNIHY, VYPOZICKY}
 
@@ -10,7 +11,6 @@ enum MENU{OSOBY, KNIHY, VYPOZICKY}
 export class AppComponent {
   title = 'kniznicaUI';
   menu = MENU;
-  aktMenu = MENU.OSOBY;
   osoby:any = [];
   osoba = {id: '1', meno: 'Andrej Malý', contact: 'a.maly@gmail.com'}
 
@@ -19,10 +19,23 @@ export class AppComponent {
 
   vypozicky: any = [];
   vypozicka = {id: 0, kniha: 0, pouzivatel: 0}
-  public nastavMenu(m: MENU){
-    this.aktMenu = m;
+
+  constructor(private router: Router) {
+    //this.router.navigate([]); aby sa otvorila nejaka stranka pri nacitani?
   }
 
+  public nastavMenu(m: MENU){
+    switch (m) {
+      case MENU.OSOBY:
+        this.router.navigate([]);
+        break;
+      case MENU.KNIHY:
+        this.router.navigate([]);
+        break;
+      case MENU.VYPOZICKY:
+        this.router.navigate([]);
+    }
+  }
 
   public pridaj(m: MENU){
     switch (m) {
