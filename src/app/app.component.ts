@@ -17,9 +17,6 @@ export class AppComponent {
   knihy: any = []
   kniha = {id: 0, nazov: 'Harry Potter', autor: 'J.K Rowling', dostupnost: 'ano'}
 
-  vypozicky: any = [];
-  vypozicka = {id: 0, kniha: 0, pouzivatel: 0}
-
   constructor(private router: Router) {
     //this.router.navigate([]); aby sa otvorila nejaka stranka pri nacitani?
   }
@@ -33,7 +30,7 @@ export class AppComponent {
         this.router.navigate([]);
         break;
       case MENU.VYPOZICKY:
-        this.router.navigate([]);
+        this.router.navigate(['/vypozicky']);
     }
   }
 
@@ -44,8 +41,8 @@ export class AppComponent {
         this.osoby.push(o2);
         break;
       case MENU.VYPOZICKY:
-        let v = {id: this.vypozicka.id, kniha: this.vypozicka.kniha, pouzivatel: this.vypozicka.pouzivatel};
-        this.vypozicky.push(v);
+        /*let v = {id: this.vypozicka.id, kniha: this.vypozicka.kniha, pouzivatel: this.vypozicka.pouzivatel};
+        this.vypozicky.push(v);*/
         break;
       case MENU.KNIHY:
         let k = {id: this.kniha.id, nazov: this.kniha.nazov, autor: this.kniha.autor, dostupnost: this.kniha.dostupnost};

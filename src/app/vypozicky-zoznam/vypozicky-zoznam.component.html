@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  ZOZNAM:<br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">KNIHA</th>
+      <th scope="col">POUŽÍVATEĽ</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let v of vypozicky">
+      <td>{{ v.id }}</td>
+      <td>{{ v.bookId }}</td>
+      <td>{{ v.customerId }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
