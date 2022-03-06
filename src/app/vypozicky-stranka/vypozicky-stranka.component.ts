@@ -16,7 +16,7 @@ export class VypozickyStrankaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //TODO prepojit s books / customers
+  //Prepojenie s inymi sa neda kvoli router-outlet
   public spracujVypozicku($event: Vypozicka) {
     let vypozicka = new Vypozicka($event.id, $event.bookId, $event.customerId);
     this.vypozicky.push(vypozicka);
