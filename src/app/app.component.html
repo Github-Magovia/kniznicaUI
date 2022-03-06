@@ -1,12 +1,4 @@
-<button (click)="nastavMenu(menu.OSOBY)">Osoby</button>
-<button (click)="nastavMenu(menu.KNIHY)">Knihy</button>
-<button (click)="nastavMenu(menu.VYPOZICKY)">Vypozicky</button>
-<br>
-<br>
-<router-outlet></router-outlet>
-
-<!-- stary kod bez Router -->
-<!--ul ngbNav #nav="ngbNav" class="nav-tabs">
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
   <li ngbNavItem="">
     <a (click)="nastavMenu(menu.OSOBY)" ngbNavLink>OSOBY</a>
     <ng-template ngbNavContent>
@@ -129,4 +121,4 @@
     </ng-template>
   </li>
 </ul>
-<div [ngbNavOutlet]="nav"></div-->
+<div [ngbNavOutlet]="nav"></div>
