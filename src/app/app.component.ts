@@ -11,11 +11,9 @@ enum MENU{OSOBY, KNIHY, VYPOZICKY}
 export class AppComponent {
   title = 'kniznicaUI';
   menu = MENU;
-  osoby:any = [];
-  osoba = {id: 1, meno: 'Andrej Malý', contact: 'a.maly@gmail.com'}
 
   constructor(private router: Router) {
-    //this.router.navigate([]); aby sa otvorila nejaka stranka pri nacitani?
+    this.router.navigate(['/users']); 
   }
 
   public nastavMenu(m: MENU){
@@ -24,11 +22,10 @@ export class AppComponent {
         this.router.navigate(['/users']);
         break;
       case MENU.KNIHY:
-        this.router.navigate([]);
+        this.router.navigate(['/knihy']);
         break;
       case MENU.VYPOZICKY:
-        this.router.navigate([]);
+        this.router.navigate(['/vypozicky']);
     }
   }
-
 }
