@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: 'knihy',
     component: KnihyStrankaComponent
+  },
+  {
+    path: 'users',
+    component: CustomerStrankaComponent
   }
 ];
 
