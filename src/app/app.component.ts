@@ -27,7 +27,7 @@ export class AppComponent {
         this.router.navigate([]);
         break;
       case MENU.KNIHY:
-        this.router.navigate([]);
+        this.router.navigate(['/knihy']);
         break;
       case MENU.VYPOZICKY:
         this.router.navigate(['/vypozicky']);
@@ -45,8 +45,8 @@ export class AppComponent {
         this.vypozicky.push(v);*/
         break;
       case MENU.KNIHY:
-        let k = {id: this.kniha.id, nazov: this.kniha.nazov, autor: this.kniha.autor, dostupnost: this.kniha.dostupnost};
-        this.knihy.push(k);
+        /*let k = {id: this.kniha.id, nazov: this.kniha.nazov, autor: this.kniha.autor, dostupnost: this.kniha.dostupnost};
+        this.knihy.push(k);*/
         break;
     }
   }
