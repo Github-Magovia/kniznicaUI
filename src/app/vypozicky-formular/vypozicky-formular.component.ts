@@ -7,7 +7,7 @@ import {Vypozicka} from "../models/vypozicka.model";
   styleUrls: ['./vypozicky-formular.component.css']
 })
 export class VypozickyFormularComponent implements OnInit {
-  vypozicka: Vypozicka = {id: 0, bookId: 0, customerId: 0};
+  vypozicka: Vypozicka = {id: 0, bookId: "The Road", customerId: "Jan Polievka"};
 
   @Output() vypozickaEmitter = new EventEmitter<Vypozicka>();
   constructor() { }
