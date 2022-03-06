@@ -9,12 +9,18 @@ import {AppRoutingModule} from "./app-routing.module";
 import { VypozickyStrankaComponent } from './vypozicky-stranka/vypozicky-stranka.component';
 import { VypozickyFormularComponent } from './vypozicky-formular/vypozicky-formular.component';
 import { VypozickyZoznamComponent } from './vypozicky-zoznam/vypozicky-zoznam.component';
+import { KnihyFormularComponent } from './knihy-formular/knihy-formular.component';
+import { KnihyStrankaComponent } from './knihy-stranka/knihy-stranka.component';
+import { KnihyZoznamComponent } from './knihy-zoznam/knihy-zoznam.component';
 @NgModule({
   declarations: [
     AppComponent,
     VypozickyStrankaComponent,
     VypozickyFormularComponent,
-    VypozickyZoznamComponent
+    VypozickyZoznamComponent,
+    KnihyFormularComponent,
+    KnihyStrankaComponent,
+    KnihyZoznamComponent
   ],
   imports: [
     BrowserModule,
