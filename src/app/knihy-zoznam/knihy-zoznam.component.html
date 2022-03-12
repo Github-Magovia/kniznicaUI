@@ -1,6 +1,10 @@
 <div class="container-fluid">
   ZOZNAM: <br>
-  <table class="table table-striped">
+  <div *ngIf="!knihy || knihy?.length == 0">
+    Zoznam kníh je prázdny.
+  </div>
+
+  <table class="table table-striped" *ngIf="knihy?.length >0">
     <thead>
     <tr>
       <th scope="col">#ID</th>
@@ -15,6 +19,10 @@
       <td>{{k.nazov}}</td>
       <td>{{k.autor}}</td>
       <td>{{k.dostupnost}}</td>
+      <td>
+        <button (click)="uprav(knihy)">Upraviť</button>
+        <button (click)="zmaz(knihy)">Zmazať</button>
+      </td>
     </tr>
 
 
