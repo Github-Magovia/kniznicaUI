@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input,} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Kniha} from "../models/kniha.model";
-import {Output} from "@angular/core";
 
 @Component({
   selector: 'app-knihy-zoznam',
@@ -19,11 +18,11 @@ export class KnihyZoznamComponent {
 
   constructor() { }
 
-  uprav(kniha: Kniha[]): void {
+  uprav(kniha: Kniha): void {
     this.upravKnihu.emit(kniha);
   }
 
-  zmaz(kniha: Kniha[]): void {
+  zmaz(kniha: Kniha): void {
     this.zmazKnihu.emit(kniha);
   }
 
