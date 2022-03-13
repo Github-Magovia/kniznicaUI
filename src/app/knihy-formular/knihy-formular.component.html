@@ -1,18 +1,21 @@
-<div>
-  <div class="container-fluid">
-    #ID: <input type="number" [(ngModel)]="kniha.id">
+<h1>Knihy - formular</h1>
+
+<div class="container-fluid">
+  <form [formGroup]="knihaForm">
+    <label>
+      Nazov: <input type="text" formControlName="nazov">
+    </label>
     <br>
-    NÁZOV: <input type="text" [(ngModel)]="kniha.nazov">
+    <label>
+      Autor: <input type="text" formControlName="autor">
+    </label>
     <br>
-    AUTOR: <input type="text" [(ngModel)]="kniha.autor">
-    <br>
-    DOSTUPNOSŤ: <input type="text" [(ngModel)]="kniha.dostupnost">
+    <label>
+      Dostupnost: <input type="text" formControlName="dostupnost">
+    </label>
     <br><br>
-    <button mat-raised-button (click) = "pridajKnihu()">PRIDAJ</button>
-  </div>
-
-
-
-
-
+    <button (click)="pridajKnihu()" *ngIf="knihaForm.value.id === null">Pridaj</button>
+    <button (click)="upravKnihu()" *ngIf="knihaForm.value.id !== null">Uprav</button>
+    <button (click)="zrus()">Zrusit</button>
+  </form>
 </div>

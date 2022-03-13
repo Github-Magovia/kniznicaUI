@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Kniha} from "../models/kniha.model";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-knihy-formular',
@@ -7,18 +8,51 @@ import {Kniha} from "../models/kniha.model";
   styleUrls: ['./knihy-formular.component.css']
 })
 export class KnihyFormularComponent implements OnInit {
+  knihaForm: FormGroup;
 
-  kniha: Kniha = {id: 0, nazov: "Harry Potter", autor: "J.K Rowling", dostupnost:"ano"}
+  @Input()
+  set kniha(k: Kniha) {
+    if (k) { this.naplnFormGroup(k); }
+  }
 
-  @Output() knihaEmitter = new EventEmitter<Kniha>();
+  @Output() pridajKnihuEmitter = new EventEmitter<Kniha>();
 
-  constructor() { }
+  @Output() upravKnihuEmitter = new EventEmitter<Kniha>();
+
+  constructor() {
+    this.knihaForm = new FormGroup({
+      id: new FormControl(null),
+      nazov: new FormControl(null),
+      autor: new FormControl(null),
+      dostupnost: new FormControl(null)
+    });
+  }
+
+  private naplnFormGroup(kniha: Kniha): void {
+    this.knihaForm.controls['id'].setValue(kniha.id);
+    this.knihaForm.controls['nazov'].setValue(kniha.nazov);
+    this.knihaForm.controls['autor'].setValue(kniha.autor);
+    this.knihaForm.controls['dostupnost'].setValue(kniha.dostupnost);
+  }
+
+  public pridajKnihu(): void {
+    this.pridajKnihuEmitter.emit({id: Math.random().toString(),
+      nazov: this.knihaForm.value.nazov,
+      autor: this.knihaForm.value.autor,
+      dostupnost: this.knihaForm.value.dostupnost});
+    this.knihaForm.reset();
+  }
+
+  public upravKnihu(): void {
+    this.upravKnihuEmitter.emit(this.knihaForm.value);
+    this.knihaForm.reset();
+  }
+
+  public zrus(): void {
+    this.kniha = undefined;
+    this.knihaForm.reset();
+  }
 
   ngOnInit(): void {
   }
-
-  public pridajKnihu(){
-    this.knihaEmitter.emit(this.kniha);
-  }
-
 }
