@@ -1,3 +1,16 @@
-<app-knihy-formular (knihaEmitter)="spracujKnihu($event)"></app-knihy-formular>
+<app-knihy-formular  [kniha]="knihaNaUpravu"
+                      (pridajKnihuEmitter)="pridajKnihu($event)"
+                      (upravKnihuEmitter)="upravKnihu($event)">
+</app-knihy-formular>
+
+<app-knihy-zoznam [knihy]="knihy"
+                  (upravKnihu)="upravZoZoznamu($event)"
+                  (zmazKnihu)="zmazZoZoznamu($event)">
+
+</app-knihy-zoznam>
+
 <br>
-<app-knihy-zoznam [knihy]="knihy"></app-knihy-zoznam>
+
+<div>
+  <button (click)="chodSpat()">SPÄŤ</button>
+</div>

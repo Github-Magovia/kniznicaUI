@@ -1,23 +1,44 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {Kniha} from "../models/kniha.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-knihy-stranka',
   templateUrl: './knihy-stranka.component.html',
   styleUrls: ['./knihy-stranka.component.css']
 })
-export class KnihyStrankaComponent implements OnInit {
-  name = 'kniznicaUI - Knihy';
-  @Output()knihy: Kniha[] = [];
+export class KnihyStrankaComponent {
 
-  constructor() { }
+  knihy: Kniha[] = [];
 
-  ngOnInit(): void {
+  knihaNaUpravu?: Kniha;
+
+  constructor(private router: Router) { }
+
+  chodSpat(): void {
+    this.router.navigate(['']);
   }
 
-  public spracujKnihu($event: Kniha){
-    let kniha = new Kniha($event.id,$event.nazov,$event.autor,$event.dostupnost);
+  pridajKnihu(kniha: Kniha): void {
     this.knihy.push(kniha);
+  }
+
+  upravKnihu(kniha: Kniha): void {
+    const index = this.knihy.findIndex(knihaArray => knihaArray.id === kniha.id);
+    if (index !== -1) {
+      this.knihy[index] = kniha;
+    }
+  }
+
+  upravZoZoznamu(kniha: Kniha): void {
+    this.knihaNaUpravu = kniha;
+  }
+
+  zmazZoZoznamu(kniha: Kniha): void {
+    const index = this.knihy.findIndex(knihaArray => knihaArray.id === kniha.id);
+    if (index !== -1) {
+      this.knihy.splice(index, 1);
+    }
   }
 
 }
