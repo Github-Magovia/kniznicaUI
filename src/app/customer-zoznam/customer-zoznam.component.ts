@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Customer} from "../models/customer.model";
 
 @Component({
@@ -7,12 +7,23 @@ import {Customer} from "../models/customer.model";
   styleUrls: ['./customer-zoznam.component.css']
 })
 export class CustomerZoznamComponent{
-  @Input()customersz: Customer[] = [];
+  @Input()
+  customersz: Customer[] = [];
 
   constructor() { }
+  @Output()
+  editCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
 
-  ngOnInit(): void {
+  @Output()
+  removeCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
 
+  edit(customer: Customer): void{
+    this.editCustomer.emit(customer);
   }
+
+  remove(customer: Customer): void{
+    this.removeCustomer.emit(customer);
+  }
+
 
 }

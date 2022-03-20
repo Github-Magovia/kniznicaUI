@@ -1,13 +1,18 @@
 export class Customer{
 
-  id: number;
-  meno: String;
+  id?: number;
+  customerName?: String;
+  firstName: String;
+  lastName: String;
   contact: String;
 
 
-  constructor(id: number, meno: String, contact: String) {
-    this.id = id;
-    this.meno = meno;
-    this.contact = contact;
+  constructor(customer: Customer) {
+    this.id = customer.id;
+    this.customerName = customer.customerName;
+    this.firstName = customer.firstName;
+    this.lastName = customer.lastName;
+    this.contact = customer.contact;
+
   }
 }

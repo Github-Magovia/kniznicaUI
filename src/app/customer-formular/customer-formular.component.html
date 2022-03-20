@@ -1,13 +1,29 @@
-<div>
+<h1>Zákazníci - formulár</h1>
+
   <div class="container-fluid">
-    Id: <input type="number" [(ngModel)]="customer.id">
+    <form [formGroup]="customerForm" >
+      <label>
+         Id:
+        <input type="text" formControlName="id" readonly>
+      </label>
     <br>
-    Meno:
-    <input type="text" [(ngModel)]="customer.meno">
+      <label>
+        Meno:
+    <input type="text" formControlName="firstName">
+      </label>
     <br>
+      <label>
+        Priezvisko:
+        <input type="text" formControlName="lastName">
+      </label>
+      <br>
+      <label>
     Kontakt:
-    <input type="text" [(ngModel)]="customer.contact">
+    <input type="text" formControlName="contact">
+      </label>
     <br><br>
-    <button mat-raised-button (click)="pridajCustomera()">PRIDAJ</button>
+      <button mat-raised-button (click)="pridaj()" *ngIf="customerForm.value.id === null">PRIDAJ</button>
+      <button mat-raised-button (click)="uprav()" *ngIf="customerForm.value.id !== null">UPRAV</button>
+      <button mat-raised-button (click)="odstran()">ODSTRAN</button>
+    </form>
   </div>
-</div>
