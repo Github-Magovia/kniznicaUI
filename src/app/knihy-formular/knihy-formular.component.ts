@@ -30,14 +30,14 @@ export class KnihyFormularComponent implements OnInit {
 
   private naplnFormGroup(kniha: Kniha): void {
     this.knihaForm.controls['id'].setValue(kniha.id);
-    this.knihaForm.controls['nazov'].setValue(kniha.nazov);
+    this.knihaForm.controls['nazov'].setValue(kniha.name);
     this.knihaForm.controls['autor'].setValue(kniha.autor);
     this.knihaForm.controls['dostupnost'].setValue(kniha.dostupnost);
   }
 
   public pridajKnihu(): void {
     this.pridajKnihuEmitter.emit({id: Math.random().toString(),
-      nazov: this.knihaForm.value.nazov,
+      name: this.knihaForm.value.nazov,
       autor: this.knihaForm.value.autor,
       dostupnost: this.knihaForm.value.dostupnost});
     this.knihaForm.reset();
