@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {waitForAsync} from "@angular/core/testing";
 import {Customer} from "../models/customer.model";
+import {CustomerServiceService} from "../../../customer-service.service";
 
 @Component({
   selector: 'app-customer-stranka',
