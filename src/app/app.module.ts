@@ -15,6 +15,8 @@ import { KnihyZoznamComponent } from './knihy-zoznam/knihy-zoznam.component';
 import {CustomerFormularComponent} from "./customer-formular/customer-formular.component";
 import {CustomerStrankaComponent} from "./customer-stranka/customer-stranka.component";
 import {CustomerZoznamComponent} from "./customer-zoznam/customer-zoznam.component";
+import  {HttpClientModule} from "@angular/common/http";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import {CustomerZoznamComponent} from "./customer-zoznam/customer-zoznam.compone
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
