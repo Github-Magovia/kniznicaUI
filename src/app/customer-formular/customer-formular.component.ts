@@ -31,21 +31,22 @@ export class CustomerFormularComponent {
     this.customerForm = new FormGroup({
       id: new FormControl(null),
       customerName: new FormControl(null),
-      email: new FormControl(null)
+      contact: new FormControl(null)
     });
   }
   private naplnFormular(cust: Customer): void {
     this.customerForm.controls['id'].setValue(cust.id);
     this.customerForm.controls['customerName'].setValue(cust.customerName);
-    this.customerForm.controls['email'].setValue(cust.email);
+    this.customerForm.controls['firstName'].setValue(cust.firstName);
+    this.customerForm.controls['lastName'].setValue(cust.lastName);
+    this.customerForm.controls['contact'].setValue(cust.contact);
   }
   public pridaj(): void {
     this.pridajOsobuEmitter.emit({
-      id: Math.random().toString(),
-      customerName: this.customerForm.value.meno,
-      email: this.customerForm.value.contact
-
-    });
+      firstName: this.customerForm.value.firstName,
+      lastName: this.customerForm.value.lastName,
+      customerName: this.customerForm.value.customerName,
+      contact: this.customerForm.value.contact});
     this.customerForm.reset();
   }
   public uprav(): void{
