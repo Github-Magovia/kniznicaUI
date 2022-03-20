@@ -23,5 +23,6 @@ export class KnihyService {
     return this.http.put<Kniha>(`${this.apiUrl}/${knihaId}`, k);
   }
 
-  public deleteBook(knihaId: number): void { this.http.delete(`${this.apiUrl}/${knihaId}`).subscribe(); }
+  public deleteBook(knihaId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${knihaId}`); }
 }
