@@ -1,6 +1,6 @@
 export class Customer{
 
-  id?: number;
+  id?: String;
   customerName: String;
   email: String;
 
