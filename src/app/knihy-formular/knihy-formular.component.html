@@ -3,15 +3,27 @@
 <div class="container-fluid">
   <form [formGroup]="knihaForm">
     <label>
-      Nazov: <input type="text" formControlName="nazov">
+      ID: <input type="text" formControlName="id" readonly>
     </label>
     <br>
     <label>
-      Autor: <input type="text" formControlName="autor">
+      Nazov knihy: <input type="text" formControlName="title">
     </label>
     <br>
     <label>
-      Dostupnost: <input type="text" formControlName="dostupnost">
+      Autor krstne meno: <input type="text" formControlName="authorFirstName">
+    </label>
+    <br>
+    <label>
+      Autor priezvisko: <input type="text" formControlName="authorLastName">
+    </label>
+    <br>
+    <label>
+      ISBN: <input type="text" formControlName="isbn">
+    </label>
+    <br>
+    <label>
+      Pocet knih: <input type="number" min="0" formControlName="bookCount">
     </label>
     <br><br>
     <button (click)="pridajKnihu()" *ngIf="knihaForm.value.id === null">Pridaj</button>

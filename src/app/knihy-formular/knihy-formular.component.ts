@@ -22,24 +22,32 @@ export class KnihyFormularComponent implements OnInit {
   constructor() {
     this.knihaForm = new FormGroup({
       id: new FormControl(null),
-      nazov: new FormControl(null),
-      autor: new FormControl(null),
-      dostupnost: new FormControl(null)
+      title: new FormControl(null),
+      authorFirstName: new FormControl(null),
+      authorLastName: new FormControl(null),
+      name: new FormControl(null),
+      isbn: new FormControl(null),
+      bookCount: new FormControl(null)
     });
   }
 
   private naplnFormGroup(kniha: Kniha): void {
     this.knihaForm.controls['id'].setValue(kniha.id);
-    this.knihaForm.controls['nazov'].setValue(kniha.nazov);
-    this.knihaForm.controls['autor'].setValue(kniha.autor);
-    this.knihaForm.controls['dostupnost'].setValue(kniha.dostupnost);
+    this.knihaForm.controls['title'].setValue(kniha.title);
+    this.knihaForm.controls['authorFirstName'].setValue(kniha.authorFirstName);
+    this.knihaForm.controls['authorLastName'].setValue(kniha.authorLastName);
+    this.knihaForm.controls['isbn'].setValue(kniha.isbn);
+    this.knihaForm.controls['bookCount'].setValue(kniha.bookCount);
   }
 
   public pridajKnihu(): void {
-    this.pridajKnihuEmitter.emit({id: Math.random().toString(),
-      nazov: this.knihaForm.value.nazov,
-      autor: this.knihaForm.value.autor,
-      dostupnost: this.knihaForm.value.dostupnost});
+    this.pridajKnihuEmitter.emit({
+      title: this.knihaForm.value.title,
+      authorFirstName: this.knihaForm.value.authorFirstName,
+      authorLastName: this.knihaForm.value.authorLastName,
+      isbn: this.knihaForm.value.isbn,
+      bookCount: this.knihaForm.value.bookCount
+    });
     this.knihaForm.reset();
   }
 

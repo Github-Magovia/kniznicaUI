@@ -1,24 +1,54 @@
-import {Component, OnInit, Output} from "@angular/core";
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {waitForAsync} from "@angular/core/testing";
 import {Customer} from "../models/customer.model";
+import {CustomerServiceService} from "../../../customer-service.service";
 
 @Component({
   selector: 'app-customer-stranka',
   templateUrl: './customer-stranka.component.html',
   styleUrls: ['./customer-stranka.component.css']
 })
-export class CustomerStrankaComponent implements OnInit{
-  name= 'kniznicaUI - Osoby';
-  @Output()customers: Customer[] = [];
+export class CustomerStrankaComponent implements OnInit {
 
-  constructor() {
+  customers: Customer[] = [];
+
+  customerNaUpravu?: Customer;
+
+  constructor(private router: Router, private customerService: CustomerServiceService) { }
+
+  ngOnInit(): void { this.refreshCustomers(); }
+
+  refreshCustomers(): void {
+    this.customerService.getCustomers().subscribe(data => {
+      this.customers = data;
+    });
   }
 
-  ngOnInit(): void {
+  chodSpat(): void {
+    this.router.navigate(['']);
   }
 
-  public spracujCustomera($event: Customer){
-    let customer = new Customer($event.id, $event.meno, $event.contact);
-    this.customers.push(customer);
+  pridajCustomer(customer: Customer): void {
+    this.customerService.createCustomer(customer).subscribe( data => {
+      this.refreshCustomers();
+    });
+  }
+
+  upravCustomer(customer: Customer): void {
+    this.customerService.updateCustomer(customer.id, customer).subscribe(data => {
+      this.refreshCustomers();
+    });
+  }
+
+  upravZoZoznamu(customer: Customer): void {
+    this.customerNaUpravu = customer;
+  }
+
+  zmazZoZoznamu(customer: Customer): void {
+    this.customerService.deleteCustomer(customer.id).subscribe(data => {
+      this.refreshCustomers();
+    });
   }
 
 }

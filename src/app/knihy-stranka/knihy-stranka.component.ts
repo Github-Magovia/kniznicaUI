@@ -1,33 +1,44 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Kniha} from "../models/kniha.model";
 import {Router} from "@angular/router";
+import {KnihyService} from "../../services/knihy/knihy.service";
+import {waitForAsync} from "@angular/core/testing";
 
 @Component({
   selector: 'app-knihy-stranka',
   templateUrl: './knihy-stranka.component.html',
   styleUrls: ['./knihy-stranka.component.css']
 })
-export class KnihyStrankaComponent {
+export class KnihyStrankaComponent implements OnInit {
 
   knihy: Kniha[] = [];
 
   knihaNaUpravu?: Kniha;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private knihyService: KnihyService) { }
+
+  ngOnInit(): void { this.refreshKnihy(); }
+
+  refreshKnihy(): void {
+    this.knihyService.getAllBooks().subscribe(data => {
+      this.knihy = data;
+    });
+  }
 
   chodSpat(): void {
     this.router.navigate(['']);
   }
 
   pridajKnihu(kniha: Kniha): void {
-    this.knihy.push(kniha);
+    this.knihyService.createBook(kniha).subscribe( data => {
+      this.refreshKnihy();
+    });
   }
 
   upravKnihu(kniha: Kniha): void {
-    const index = this.knihy.findIndex(knihaArray => knihaArray.id === kniha.id);
-    if (index !== -1) {
-      this.knihy[index] = kniha;
-    }
+    this.knihyService.updateBook(kniha.id, kniha).subscribe(data => {
+      this.refreshKnihy();
+    });
   }
 
   upravZoZoznamu(kniha: Kniha): void {
@@ -35,10 +46,9 @@ export class KnihyStrankaComponent {
   }
 
   zmazZoZoznamu(kniha: Kniha): void {
-    const index = this.knihy.findIndex(knihaArray => knihaArray.id === kniha.id);
-    if (index !== -1) {
-      this.knihy.splice(index, 1);
-    }
+    this.knihyService.deleteBook(kniha.id).subscribe(data => {
+      this.refreshKnihy();
+    });
   }
 
 }
