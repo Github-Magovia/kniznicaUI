@@ -1,5 +1,8 @@
 <div class="container-fluid">
   ZOZNAM:<br>
+  <div *ngIf="!customersz || customersz?.length == 0">
+    Zoznam osôb je prázdny.
+  </div>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -11,8 +14,12 @@
     <tbody>
     <tr *ngFor="let c of customersz">
       <td>{{ c.id }}</td>
-      <td>{{ c.meno }}</td>
-      <td>{{ c.contact }}</td>
+      <td>{{ c.customerName }}</td>
+      <td>{{ c.email }}</td>
+      <td>
+        <button (click)="edit(c)">Uprav</button>
+        <button (click)="remove(c)">Odstran</button>
+      </td>
     </tr>
     </tbody>
   </table>
