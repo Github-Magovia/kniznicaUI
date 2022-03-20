@@ -28,13 +28,13 @@ export class CustomerStrankaComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  pridaj(customer: Customer): void {
+  pridajCustomer(customer: Customer): void {
     this.customerService.createCustomer(customer).subscribe( data => {
       this.refreshCustomers();
     });
   }
 
-  uprav(customer: Customer): void {
+  upravCustomer(customer: Customer): void {
     this.customerService.updateCustomer(customer.id, customer).subscribe(data => {
       this.refreshCustomers();
     });
