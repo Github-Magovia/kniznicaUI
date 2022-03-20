@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Kniha} from "../models/kniha.model";
 import {Router} from "@angular/router";
 import {KnihyService} from "../../services/knihy/knihy.service";
+import {waitForAsync} from "@angular/core/testing";
 
 @Component({
   selector: 'app-knihy-stranka',
@@ -29,14 +30,15 @@ export class KnihyStrankaComponent implements OnInit {
   }
 
   pridajKnihu(kniha: Kniha): void {
-    this.knihy.push(kniha);
+    this.knihyService.createBook(kniha).subscribe( data => {
+      this.refreshKnihy();
+    });
   }
 
   upravKnihu(kniha: Kniha): void {
-    const index = this.knihy.findIndex(knihaArray => knihaArray.id === kniha.id);
-    if (index !== -1) {
-      this.knihy[index] = kniha;
-    }
+    this.knihyService.updateBook(kniha.id, kniha).subscribe(data => {
+      this.refreshKnihy();
+    });
   }
 
   upravZoZoznamu(kniha: Kniha): void {
@@ -44,10 +46,8 @@ export class KnihyStrankaComponent implements OnInit {
   }
 
   zmazZoZoznamu(kniha: Kniha): void {
-    const index = this.knihy.findIndex(knihaArray => knihaArray.id === kniha.id);
-    if (index !== -1) {
-      this.knihy.splice(index, 1);
-    }
+    this.knihyService.deleteBook(kniha.id);
+    setTimeout(() => {  this.refreshKnihy(); }, 250);
   }
 
 }
