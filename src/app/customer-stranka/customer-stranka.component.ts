@@ -46,8 +46,9 @@ export class CustomerStrankaComponent implements OnInit {
   }
 
   zmazZoZoznamu(customer: Customer): void {
-    this.customerService.deleteCustomer(customer.id);
-    setTimeout(() => {  this.refreshCustomers(); }, 250);
+    this.customerService.deleteCustomer(customer.id).subscribe(data => {
+      this.refreshCustomers();
+    });
   }
 
 }

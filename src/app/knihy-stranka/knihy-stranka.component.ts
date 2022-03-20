@@ -46,8 +46,9 @@ export class KnihyStrankaComponent implements OnInit {
   }
 
   zmazZoZoznamu(kniha: Kniha): void {
-    this.knihyService.deleteBook(kniha.id);
-    setTimeout(() => {  this.refreshKnihy(); }, 250);
+    this.knihyService.deleteBook(kniha.id).subscribe(data => {
+      this.refreshKnihy();
+    });
   }
 
 }
