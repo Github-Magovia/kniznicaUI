@@ -8,17 +8,19 @@
     <thead>
     <tr>
       <th scope="col">#ID</th>
-      <th scope="col">NÁZOV</th>
+      <th scope="col">NAZOV KNIHY</th>
       <th scope="col">AUTOR</th>
-      <th scope="col">DOSTUPNOSŤ</th>
+      <th scope="col">ISBN</th>
+      <th scope="col">POCET KNIH</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let k of knihy">
       <td>{{k.id}}</td>
+      <td>{{k.title}}</td>
       <td>{{k.name}}</td>
-      <td>{{k.autor}}</td>
-      <td>{{k.dostupnost}}</td>
+      <td>{{k.isbn}}</td>
+      <td>{{k.bookCount}}</td>
       <td>
         <button (click)="uprav(k)">Upraviť</button>
         <button (click)="zmaz(k)">Zmazať</button>
