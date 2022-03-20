@@ -30,6 +30,8 @@ export class CustomerFormularComponent {
   private vytvorFormular(): void {
     this.customerForm = new FormGroup({
       id: new FormControl(null),
+      firstName: new FormControl(null),
+      lastName: new FormControl(null),
       customerName: new FormControl(null),
       contact: new FormControl(null)
     });
