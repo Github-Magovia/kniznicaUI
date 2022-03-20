@@ -1,13 +1,26 @@
 export class Customer{
 
-  id: number;
+  id?: number;
   meno: String;
   contact: String;
 
 
-  constructor(id: number, meno: String, contact: String) {
-    this.id = id;
-    this.meno = meno;
-    this.contact = contact;
+  constructor(customer: Customer) {
+    this.id = customer.id;
+    this.meno = customer.meno;
+    this.contact = customer.contact;
+  }
+}
+
+export class CustomerZoznamComponent{
+  id?: number;
+  meno: String;
+  contact: String;
+
+
+  constructor(customer: CustomerZoznamComponent) {
+    this.id = customer.id;
+    this.meno = customer.meno;
+    this.contact = customer.contact;
   }
 }
