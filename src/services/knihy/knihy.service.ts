@@ -19,7 +19,9 @@ export class KnihyService {
     return this.http.get<Kniha>(`${this.apiUrl}/${knihaId}`);
   }
 
-  public updateBook(knihaId: number, k: Kniha) { return this.http.put<Kniha>(`${this.apiUrl}/${knihaId}`, k); }
+  public updateBook(knihaId: number, k: Kniha): Observable<Kniha> {
+    return this.http.put<Kniha>(`${this.apiUrl}/${knihaId}`, k);
+  }
 
-  public deleteBook(knihaId: number): void { this.http.delete(`${this.apiUrl}/${knihaId}`) }
+  public deleteBook(knihaId: number): void { this.http.delete(`${this.apiUrl}/${knihaId}`).subscribe(); }
 }

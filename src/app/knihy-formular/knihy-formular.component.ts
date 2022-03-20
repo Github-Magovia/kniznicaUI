@@ -23,6 +23,8 @@ export class KnihyFormularComponent implements OnInit {
     this.knihaForm = new FormGroup({
       id: new FormControl(null),
       title: new FormControl(null),
+      authorFirstName: new FormControl(null),
+      authorLastName: new FormControl(null),
       name: new FormControl(null),
       isbn: new FormControl(null),
       bookCount: new FormControl(null)
@@ -32,7 +34,8 @@ export class KnihyFormularComponent implements OnInit {
   private naplnFormGroup(kniha: Kniha): void {
     this.knihaForm.controls['id'].setValue(kniha.id);
     this.knihaForm.controls['title'].setValue(kniha.title);
-    this.knihaForm.controls['name'].setValue(kniha.name);
+    this.knihaForm.controls['authorFirstName'].setValue(kniha.authorFirstName);
+    this.knihaForm.controls['authorLastName'].setValue(kniha.authorLastName);
     this.knihaForm.controls['isbn'].setValue(kniha.isbn);
     this.knihaForm.controls['bookCount'].setValue(kniha.bookCount);
   }
@@ -40,7 +43,8 @@ export class KnihyFormularComponent implements OnInit {
   public pridajKnihu(): void {
     this.pridajKnihuEmitter.emit({
       title: this.knihaForm.value.title,
-      name: this.knihaForm.value.name,
+      authorFirstName: this.knihaForm.value.authorFirstName,
+      authorLastName: this.knihaForm.value.authorLastName,
       isbn: this.knihaForm.value.isbn,
       bookCount: this.knihaForm.value.bookCount
     });
