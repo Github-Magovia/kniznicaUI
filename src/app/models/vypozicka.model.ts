@@ -1,11 +1,17 @@
 export class Vypozicka {
-  id: number;
-  bookId: any;
-  customerId: any;
+  id?: number;
+  customerId: number;
+  customerName?: string;
+  bookId: number;
+  authorName?: string;
+  title?: string;
 
-  constructor(id: number, bookId: any, customerId: any) {
+  constructor(id: number, customerId: number, customerName: string, bookId: number, authorName: string, title: string) {
     this.id = id;
-    this.bookId = bookId;
     this.customerId = customerId;
+    this.customerName = customerName;
+    this.bookId = bookId;
+    this.authorName = authorName;
+    this.title = title;
   }
 }

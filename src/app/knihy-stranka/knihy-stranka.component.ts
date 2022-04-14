@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Kniha} from "../models/kniha.model";
 import {Router} from "@angular/router";
 import {KnihyService} from "../../services/knihy/knihy.service";
-import {waitForAsync} from "@angular/core/testing";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-knihy-stranka',
   templateUrl: './knihy-stranka.component.html',
   styleUrls: ['./knihy-stranka.component.css']
 })
-export class KnihyStrankaComponent implements OnInit {
-
+export class KnihyStrankaComponent implements OnInit, OnDestroy {
   knihy: Kniha[] = [];
+  private sub: Subscription = new Subscription();
 
   knihaNaUpravu?: Kniha;
 
@@ -19,10 +19,14 @@ export class KnihyStrankaComponent implements OnInit {
 
   ngOnInit(): void { this.refreshKnihy(); }
 
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   refreshKnihy(): void {
-    this.knihyService.getAllBooks().subscribe(data => {
+    this.sub.add(this.knihyService.getAllBooks().subscribe(data => {
       this.knihy = data;
-    });
+    }));
   }
 
   chodSpat(): void {
@@ -30,25 +34,27 @@ export class KnihyStrankaComponent implements OnInit {
   }
 
   pridajKnihu(kniha: Kniha): void {
-    this.knihyService.createBook(kniha).subscribe( data => {
+    this.sub.add(this.knihyService.createBook(kniha).subscribe( data => {
       this.refreshKnihy();
-    });
+    }));
   }
 
   upravKnihu(kniha: Kniha): void {
-    this.knihyService.updateBook(kniha.id, kniha).subscribe(data => {
+    this.sub.add(this.knihyService.updateBook(kniha.id, kniha).subscribe(data => {
       this.refreshKnihy();
-    });
+    }));
   }
 
-  upravZoZoznamu(kniha: Kniha): void {
-    this.knihaNaUpravu = kniha;
+  upravZoZoznamu(id: number): void {
+    this.sub.add(this.knihyService.getBookById(id).subscribe(data => {
+      this.knihaNaUpravu = data;
+    }));
   }
 
-  zmazZoZoznamu(kniha: Kniha): void {
-    this.knihyService.deleteBook(kniha.id).subscribe(data => {
+  zmazZoZoznamu(id: number): void {
+    this.sub.add(this.knihyService.deleteBook(id).subscribe(data => {
       this.refreshKnihy();
-    });
+    }));
   }
 
 }

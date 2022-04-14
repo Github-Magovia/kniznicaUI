@@ -16,6 +16,16 @@ import {CustomerFormularComponent} from "./customer-formular/customer-formular.c
 import {CustomerStrankaComponent} from "./customer-stranka/customer-stranka.component";
 import {CustomerZoznamComponent} from "./customer-zoznam/customer-zoznam.component";
 import {HttpClientModule} from "@angular/common/http";
+import {ToastModule} from "primeng/toast";
+import {ToolbarModule} from "primeng/toolbar";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {InputTextModule} from "primeng/inputtext";
+import {DropdownModule} from "primeng/dropdown";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +47,15 @@ import {HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     MatButtonModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastModule,
+    ToolbarModule,
+    TableModule,
+    ButtonModule,
+    RippleModule,
+    ConfirmDialogModule,
+    InputTextModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]
