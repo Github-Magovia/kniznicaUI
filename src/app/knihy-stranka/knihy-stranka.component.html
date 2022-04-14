@@ -1,3 +1,4 @@
+<h1 class="h1 d-flex justify-content-center align-items-center">{{name}}</h1>
 <app-knihy-formular  [kniha]="knihaNaUpravu"
                       (pridajKnihuEmitter)="pridajKnihu($event)"
                       (upravKnihuEmitter)="upravKnihu($event)">
@@ -12,5 +13,5 @@
 <br>
 
 <div>
-  <button (click)="chodSpat()">SPÄŤ</button>
+  <button pButton pRipple class="p-button-rounded p-button-help m-2" (click)="chodSpat()">SPÄŤ</button>
 </div>

@@ -1,33 +1,36 @@
-<h1>Knihy - formular</h1>
+<h2 class="h2 mx-3">{{name}}</h2>
 
 <div class="container-fluid">
   <form [formGroup]="knihaForm">
     <label>
-      ID: <input type="text" formControlName="id" readonly>
+      <input type="text" pInputText formControlName="id" readonly placeholder="ID knihy (readonly)">
     </label>
     <br>
-    <label>
-      Nazov knihy: <input type="text" formControlName="title">
-    </label>
     <br>
     <label>
-      Autor krstne meno: <input type="text" formControlName="authorFirstName">
+      <input type="text" pInputText formControlName="title"  placeholder="Názov knihy">
     </label>
     <br>
-    <label>
-      Autor priezvisko: <input type="text" formControlName="authorLastName">
-    </label>
     <br>
     <label>
-      ISBN: <input type="text" formControlName="isbn">
+      <input type="text" pInputText formControlName="authorFirstName"  placeholder="Autor krstné meno">
     </label>
     <br>
+    <br>
     <label>
-      Pocet knih: <input type="number" min="0" formControlName="bookCount">
+      <input type="text" pInputText formControlName="authorLastName"  placeholder="Autor priezvisko">
+    </label>
+    <br>
+    <br>
+    <label>
+      <input type="number" min="0" pInputText formControlName="bookCount"  placeholder="Počet kníh">
     </label>
     <br><br>
-    <button (click)="pridajKnihu()" *ngIf="knihaForm.value.id === null">Pridaj</button>
-    <button (click)="upravKnihu()" *ngIf="knihaForm.value.id !== null">Uprav</button>
-    <button (click)="zrus()">Zrusit</button>
+    <button pButton pRipple class="p-button p-button-success" [attr.disabled]="knihaForm.valid ? null : true" (click)="pridajKnihu()">Pridaj</button>
+    &nbsp;
+    <button pButton pRipple class="p-button p-button-success" [attr.disabled]="knihaForm.valid ? null : true" (click)="upravKnihu()">Uprav</button>
+    &nbsp;
+    <button pButton pRipple class="p-button p-button-success" [attr.disabled]="knihaForm.valid ? null : true" (click)="zrus()">Zruš</button>
   </form>
+  <br>
 </div>
