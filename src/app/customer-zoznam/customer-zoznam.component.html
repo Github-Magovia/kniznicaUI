@@ -17,8 +17,8 @@
       <td>{{ c.customerName }}</td>
       <td>{{ c.contact }}</td>
       <td>
-        <button (click)="edit(c)">Uprav</button>
-        <button (click)="remove(c)">Odstran</button>
+        <button (click)="edit(c.id)">Uprav</button>
+        <button (click)="remove(c.id)">Odstran</button>
       </td>
     </tr>
     </tbody>

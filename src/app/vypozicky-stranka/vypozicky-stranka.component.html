@@ -1,3 +1,10 @@
-<app-vypozicky-formular (vypozickaEmitter)="spracujVypozicku($event)"></app-vypozicky-formular>
+<h1 class="h1 d-flex justify-content-center align-items-center">{{name}}</h1>
+<app-vypozicky-formular [knihy]="knihy"
+                        [customers]="customers"
+                        (vypozickaEmitter)="pridajVypozicku($event)"></app-vypozicky-formular>
 <br>
-<app-vypozicky-zoznam [vypozicky]="vypozicky"></app-vypozicky-zoznam>
+<app-vypozicky-zoznam [vypozicky]="vypozicky" (zmazVypozicku)="zmazZoZoznamu($event)"></app-vypozicky-zoznam>
+
+<div>
+  <button pButton pRipple class="p-button-rounded p-button-help m-2" (click)="chodSpat()">SPÄŤ</button>
+</div>

@@ -12,18 +12,16 @@ export class CustomerZoznamComponent{
 
   constructor() { }
   @Output()
-  editCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
+  editCustomer: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
-  removeCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
+  removeCustomer: EventEmitter<number> = new EventEmitter<number>();
 
-  edit(customer: Customer): void{
-    this.editCustomer.emit(customer);
+  edit(id: number): void{
+    this.editCustomer.emit(id);
   }
 
-  remove(customer: Customer): void{
-    this.removeCustomer.emit(customer);
+  remove(id: number): void{
+    this.removeCustomer.emit(id);
   }
-
-
 }

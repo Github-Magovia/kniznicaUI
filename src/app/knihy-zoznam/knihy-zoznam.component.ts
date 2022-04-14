@@ -11,19 +11,19 @@ export class KnihyZoznamComponent {
   knihy: Kniha[] = [];
 
   @Output()
-  upravKnihu: EventEmitter<Kniha> = new EventEmitter<Kniha>();
+  upravKnihu: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
-  zmazKnihu: EventEmitter<Kniha> = new EventEmitter<Kniha>();
+  zmazKnihu: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
-  uprav(kniha: Kniha): void {
-    this.upravKnihu.emit(kniha);
+  uprav(id: number): void {
+    this.upravKnihu.emit(id);
   }
 
-  zmaz(kniha: Kniha): void {
-    this.zmazKnihu.emit(kniha);
+  zmaz(id: number): void {
+    this.zmazKnihu.emit(id);
   }
 
 
