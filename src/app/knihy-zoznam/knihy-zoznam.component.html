@@ -1,36 +1,54 @@
-<div class="container-fluid">
-  ZOZNAM: <br>
-  <div *ngIf="!knihy || knihy?.length == 0">
-    Zoznam kníh je prázdny.
-  </div>
+<h2 class="h2 mx-3">{{name}}</h2>
+<p-toast></p-toast>
 
-  <table class="table table-striped" *ngIf="knihy?.length >0">
-    <thead>
-    <tr>
-      <th scope="col">#ID</th>
-      <th scope="col">NAZOV KNIHY</th>
-      <th scope="col">AUTOR</th>
-      <th scope="col">ISBN</th>
-      <th scope="col">POCET KNIH</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let k of knihy">
-      <td>{{k.id}}</td>
-      <td>{{k.title}}</td>
-      <td>{{k.name}}</td>
-      <td>{{k.isbn}}</td>
-      <td>{{k.bookCount}}</td>
-      <td>
-        <button (click)="uprav(k.id)">Upraviť</button>
-        <button (click)="zmaz(k.id)">Zmazať</button>
-      </td>
-    </tr>
-
-
-    </tbody>
-
-  </table>
-
-
+<div class="card container-fluid">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="Zmaž vybrané" icon="pi pi-trash" class="p-button-danger" (click)="vymazVybraneKnihy()" [disabled]="!vybrateKnihy || !vybrateKnihy.length"></button>
+    </ng-template>
+  </p-toolbar>
+  <p-table #dt [value]="knihy" [rows]="10" [paginator]="true" [globalFilterFields]="['id','title','authorFirstName','authorLastName','bookCount']" responsiveLayout="scroll"
+           [(selection)]="vybrateKnihy" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Zobrazujem {first} až {last} knihu z celkovo {totalRecords} kníh" [showCurrentPageReport]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="title">Názov knihy <p-sortIcon field="title"></p-sortIcon></th>
+        <th pSortableColumn="authorFirstName">Autor meno <p-sortIcon field="authorFirstName"></p-sortIcon></th>
+        <th pSortableColumn="authorLastName">Autor priezvisko <p-sortIcon field="authorLastName"></p-sortIcon></th>
+        <th pSortableColumn="isbn">ISBN <p-sortIcon field="isbn"></p-sortIcon></th>
+        <th pSortableColumn="bookCount">Počet kníh <p-sortIcon field="bookCount"></p-sortIcon></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-knihy>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="knihy"></p-tableCheckbox>
+        </td>
+        <td>{{knihy.id}}</td>
+        <td>{{knihy.title}}</td>
+        <td>{{knihy.authorFirstName}}</td>
+        <td>{{knihy.authorLastName}}</td>
+        <td>{{knihy.isbn}}</td>
+        <td>{{knihy.bookCount}}</td>
+        <td>
+        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="zmaz(knihy.id)"></button>
+          &nbsp;
+        <button pButton pRipple icon="pi pi-replay" class="p-button-rounded p-button-warning" (click)="uprav(knihy.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Počet kníh: {{knihy ? knihy.length : 0 }}
+      </div>
+    </ng-template>
+  </p-table>
 </div>
+
+<p-confirmDialog header="Mazanie" [style]="{width: '450px'}"></p-confirmDialog>
+<br>

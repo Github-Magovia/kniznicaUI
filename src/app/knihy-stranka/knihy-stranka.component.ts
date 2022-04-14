@@ -10,6 +10,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./knihy-stranka.component.css']
 })
 export class KnihyStrankaComponent implements OnInit, OnDestroy {
+  name = 'Knihy';
   knihy: Kniha[] = [];
   private sub: Subscription = new Subscription();
 
@@ -56,5 +57,17 @@ export class KnihyStrankaComponent implements OnInit, OnDestroy {
       this.refreshKnihy();
     }));
   }
+
+  public refreshAll(): void {
+    this.refreshInput();
+    this.refreshKnihy();
+  }
+
+  public refreshInput(): void {
+    this.sub.add(this.knihyService.getAllBooks().subscribe(data => {
+      this.knihy = data;
+    }));
+  }
+
 
 }

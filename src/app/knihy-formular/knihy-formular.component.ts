@@ -8,6 +8,7 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./knihy-formular.component.css']
 })
 export class KnihyFormularComponent implements OnInit {
+  name = "Knihy formulár";
   knihaForm: FormGroup;
 
   @Input()

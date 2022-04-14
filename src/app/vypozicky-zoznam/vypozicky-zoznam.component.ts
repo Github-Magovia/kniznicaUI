@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Vypozicka} from "../models/vypozicka.model";
-import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-vypozicky-zoznam',
