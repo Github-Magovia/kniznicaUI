@@ -19,6 +19,7 @@
         <th pSortableColumn="title">Názov knihy <p-sortIcon field="title"></p-sortIcon></th>
         <th pSortableColumn="authorFirstName">Autor meno <p-sortIcon field="authorFirstName"></p-sortIcon></th>
         <th pSortableColumn="authorLastName">Autor priezvisko <p-sortIcon field="authorLastName"></p-sortIcon></th>
+        <th pSortableColumn="bookCount">ISBN <p-sortIcon field="isbn"></p-sortIcon></th>
         <th pSortableColumn="bookCount">Počet kníh <p-sortIcon field="bookCount"></p-sortIcon></th>
         <th></th>
       </tr>
@@ -32,6 +33,7 @@
         <td>{{knihy.title}}</td>
         <td>{{knihy.authorFirstName}}</td>
         <td>{{knihy.authorLastName}}</td>
+        <td>{{knihy.isbn}}</td>
         <td>{{knihy.bookCount}}</td>
         <td>
         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="zmaz(knihy.id)"></button>
