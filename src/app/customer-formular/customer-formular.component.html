@@ -1,29 +1,31 @@
-<h1>Zákazníci - formulár</h1>
+<h2 class="h2 mx-3">{{name}}</h2>
 
   <div class="container-fluid">
     <form [formGroup]="customerForm" >
       <label>
          Id:
-        <input type="text" formControlName="id" readonly>
+        <input type="text" pInputText  formControlName="id" readonly>
       </label>
     <br>
       <label>
         Meno:
-    <input type="text" formControlName="firstName">
+    <input type="text" pInputText  formControlName="firstName">
       </label>
     <br>
       <label>
         Priezvisko:
-        <input type="text" formControlName="lastName">
+        <input type="text" pInputText  formControlName="lastName">
       </label>
       <br>
       <label>
     Kontakt:
-    <input type="text" formControlName="contact">
+    <input type="text" pInputText  formControlName="contact">
       </label>
     <br><br>
-      <button mat-raised-button (click)="pridaj()" *ngIf="customerForm.value.id === null">PRIDAJ</button>
-      <button mat-raised-button (click)="uprav()" *ngIf="customerForm.value.id !== null">UPRAV</button>
-      <button mat-raised-button (click)="odstran()">Zruš</button>
+      <button pButton pRipple class="p-button p-button-success" (click)="pridaj()" *ngIf="customerForm.value.id === null">PRIDAJ</button>
+      &nbsp;
+      <button pButton pRipple class="p-button p-button-success" (click)="uprav()" *ngIf="customerForm.value.id !== null">UPRAV</button>
+      &nbsp;
+      <button pButton pRipple class="p-button p-button-success" (click)="odstran()">Zruš</button>
     </form>
   </div>

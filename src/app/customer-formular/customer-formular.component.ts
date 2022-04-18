@@ -9,6 +9,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class CustomerFormularComponent {
   // customer: Customer = {id: 0,meno: 'dadasd', contact: 'example@gmail.com'}
+  customerForm: FormGroup;
+  name = "Zákazníci formulár"
 
   @Input()
   set customer(data: Customer) {
@@ -20,8 +22,6 @@ export class CustomerFormularComponent {
   pridajOsobuEmitter = new EventEmitter<Customer>();
   @Output()
   upravOsobuEmitter = new EventEmitter<Customer>();
-
-  customerForm: FormGroup;
 
   constructor() {
     this.vytvorFormular();
