@@ -41,7 +41,7 @@ export class CustomerZoznamComponent{
           this.remove(v.id);
         })
         this.vybratiZakaznici = null;
-        this.messageService.add({severity:'success', summary: 'Úspešné', detail: 'Výpôžičky zmazané', life: 3000});
+        this.messageService.add({severity:'success', summary: 'Úspešné', detail: 'Zákazníci zmazaní', life: 3000});
       }
     });
   }
