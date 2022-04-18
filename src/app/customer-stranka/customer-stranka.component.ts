@@ -12,6 +12,7 @@ import {Subscription} from "rxjs";
 export class CustomerStrankaComponent implements OnInit, OnDestroy {
   customers: Customer[] = [];
   private sub: Subscription = new Subscription();
+  name ="Osoby";
 
   customerNaUpravu?: Customer;
 

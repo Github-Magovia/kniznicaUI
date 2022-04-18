@@ -1,26 +1,50 @@
-<div class="container-fluid">
-  ZOZNAM:<br>
+<h2 class="h2 mx-3">{{name}}</h2>
+<p-toast></p-toast>
+
+<div class=" card container-fluid">
+  <p-toolbar styleClass="mb-4">
+  <ng-template pTemplate="left">
+    <button pButton pRipple label="Zmaž vybrané" icon="pi pi-trash" class="p-button-danger" (click)="vymazVybranychZakaznikov()" [disabled]="!vybratiZakaznici || !vybratiZakaznici.length"></button>
+  </ng-template>
+  </p-toolbar>
   <div *ngIf="!customersz || customersz?.length == 0">
     Zoznam osôb je prázdny.
   </div>
-  <table class="table table-striped">
-    <thead>
+  <p-table #dt [value]="customersz" [rows]="10" [paginator]="true" [globalFilterFields]="['id', 'customerName', 'contact']" responsiveLayout="scroll"
+           [(selection)]="vybratiZakaznici" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Zobrazujem {first} až {last} zakaznika z celkovo {totalRecords} zakaznikov" [showCurrentPageReport]="true">
+    <ng-template pTemplate="header">
     <tr>
-      <th scope="col">#ID</th>
-      <th scope="col">MENO</th>
-      <th scope="col">KONTAKT</th>
+      <th style="width: 3rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th pSortableColumn="id">Id<p-sortIcon field="id"></p-sortIcon></th>
+      <th pSortableColumn="customerName">Meno zákazníka <p-sortIcon field="custName"></p-sortIcon></th>
+      <th pSortableColumn="contact">Kontakt <p-sortIcon field="contact"></p-sortIcon></th>
     </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let c of customersz">
-      <td>{{ c.id }}</td>
-      <td>{{ c.customerName }}</td>
-      <td>{{ c.contact }}</td>
+    </ng-template>
+    <ng-template pTemplate="body" let-customersz>
+    <tr>
       <td>
-        <button (click)="edit(c.id)">Uprav</button>
-        <button (click)="remove(c.id)">Odstran</button>
+        <p-tableCheckbox [value]="customersz"></p-tableCheckbox>
+      </td>
+      <td>{{ customersz.id }}</td>
+      <td>{{ customersz.customerName }}</td>
+      <td>{{ customersz.contact }}</td>
+      <td>
+        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="edit(customersz.id)"></button>
+        &nbsp;
+        <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="remove(customersz.id)"></button>
       </td>
     </tr>
-    </tbody>
-  </table>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Počet zákazníkov: {{customersz ? customersz.length :0}}
+      </div>
+    </ng-template>
+  </p-table>
 </div>
+
+<p-confirmDialog header="Mazanie" [style]="{width: '450px'}"></p-confirmDialog>
+<br>

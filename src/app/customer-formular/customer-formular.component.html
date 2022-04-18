@@ -1,29 +1,28 @@
-<h1>Zákazníci - formulár</h1>
+<h2 class="h2 mx-3">{{name}}</h2>
 
   <div class="container-fluid">
     <form [formGroup]="customerForm" >
       <label>
-         Id:
-        <input type="text" formControlName="id" readonly>
-      </label>
-    <br>
-      <label>
-        Meno:
-    <input type="text" formControlName="firstName">
-      </label>
-    <br>
-      <label>
-        Priezvisko:
-        <input type="text" formControlName="lastName">
-      </label>
-      <br>
-      <label>
-    Kontakt:
-    <input type="text" formControlName="contact">
+        <input type="text" pInputText  formControlName="id" readonly placeholder="ID zákazníka (readonly)">
       </label>
     <br><br>
-      <button mat-raised-button (click)="pridaj()" *ngIf="customerForm.value.id === null">PRIDAJ</button>
-      <button mat-raised-button (click)="uprav()" *ngIf="customerForm.value.id !== null">UPRAV</button>
-      <button mat-raised-button (click)="odstran()">Zruš</button>
+      <label>
+    <input type="text" pInputText  formControlName="firstName" placeholder="Meno">
+      </label>
+    <br><br>
+      <label>
+        <input type="text" pInputText  formControlName="lastName" placeholder="Priezvisko">
+      </label>
+      <br><br>
+      <label>
+    <input type="text" pInputText  formControlName="contact" placeholder="Kontakt">
+      </label>
+    <br><br>
+      <button pButton pRipple class="p-button p-button-success" [attr.disabled]="customerForm.valid ? null : true" (click)="pridaj()">PRIDAJ</button>
+      &nbsp;
+      <button pButton pRipple class="p-button p-button-success" [attr.disabled]="customerForm.valid ? null : true"  (click)="uprav()">UPRAV</button>
+      &nbsp;
+      <button pButton pRipple class="p-button p-button-success" [attr.disabled]="customerForm.valid ? null : true"  (click)="odstran()">Zruš</button>
     </form>
+    <br>
   </div>
