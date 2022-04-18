@@ -7,7 +7,6 @@
     <button pButton pRipple label="Zmaž vybrané" icon="pi pi-trash" class="p-button-danger" (click)="vymazVybranychZakaznikov()" [disabled]="!vybratiZakaznici || !vybratiZakaznici.length"></button>
   </ng-template>
   </p-toolbar>
-  ZOZNAM:<br>
   <div *ngIf="!customersz || customersz?.length == 0">
     Zoznam osôb je prázdny.
   </div>
@@ -33,8 +32,9 @@
       <td>{{ customersz.customerName }}</td>
       <td>{{ customersz.contact }}</td>
       <td>
-        <!--<button (click)="edit(c.id)">Uprav</button>-->
-        <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="remove(customersz.id)">Odstran</button>
+        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="edit(customersz.id)"></button>
+        &nbsp;
+        <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="remove(customersz.id)"></button>
       </td>
     </tr>
     </ng-template>
@@ -47,3 +47,4 @@
 </div>
 
 <p-confirmDialog header="Mazanie" [style]="{width: '450px'}"></p-confirmDialog>
+<br>

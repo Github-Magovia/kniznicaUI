@@ -8,7 +8,6 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./customer-formular.component.css']
 })
 export class CustomerFormularComponent {
-  // customer: Customer = {id: 0,meno: 'dadasd', contact: 'example@gmail.com'}
   customerForm: FormGroup;
   name = "Zákazníci formulár"
 

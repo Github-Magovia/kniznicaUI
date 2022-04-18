@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Customer} from "../models/customer.model";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {Vypozicka} from "../models/vypozicka.model";
 
 @Component({
   selector: 'app-customer-zoznam',
