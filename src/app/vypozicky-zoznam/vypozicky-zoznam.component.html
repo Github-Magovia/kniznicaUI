@@ -1,19 +1,49 @@
-<div class="container-fluid">
-  ZOZNAM:<br>
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">#ID</th>
-      <th scope="col">KNIHA</th>
-      <th scope="col">POUŽÍVATEĽ</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let v of vypozicky">
-      <td>{{ v.id }}</td>
-      <td>{{ v.bookId }}</td>
-      <td>{{ v.customerId }}</td>
-    </tr>
-    </tbody>
-  </table>
+<h2 class="h2 mx-3">{{name}}</h2>
+<p-toast></p-toast>
+
+<div class="card container-fluid">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <button pButton pRipple label="Zmaž vybrané" icon="pi pi-trash" class="p-button-danger" (click)="vymazVybraneVypozicky()" [disabled]="!vybrateVypozicky || !vybrateVypozicky.length"></button>
+    </ng-template>
+  </p-toolbar>
+  <p-table #dt [value]="vypozicky" [rows]="10" [paginator]="true" [globalFilterFields]="['id','title','authorName','customerName']" responsiveLayout="scroll"
+           [(selection)]="vybrateVypozicky" [rowHover]="true" dataKey="id"
+           currentPageReportTemplate="Zobrazujem {first} až {last} výpôžičku z celkovo {totalRecords} vypožičiek" [showCurrentPageReport]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 3rem">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="customerName">Meno zákaznika <p-sortIcon field="custName"></p-sortIcon></th>
+        <th pSortableColumn="title">Názov knihy <p-sortIcon field="title"></p-sortIcon></th>
+        <th pSortableColumn="authorName">Meno autora <p-sortIcon field="authorName"></p-sortIcon></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-vypozicky>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="vypozicky"></p-tableCheckbox>
+        </td>
+        <td>{{vypozicky.id}}</td>
+        <td>{{vypozicky.customerName}}</td>
+        <td>{{vypozicky.title}}</td>
+        <td>{{vypozicky.authorName}}</td>
+        <td>
+          <!--button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(p)"></button-->
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="zmaz(vypozicky.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Počet výpožičiek: {{vypozicky ? vypozicky.length : 0 }}
+      </div>
+    </ng-template>
+  </p-table>
 </div>
+
+<p-confirmDialog header="Mazanie" [style]="{width: '450px'}"></p-confirmDialog>
+<br>

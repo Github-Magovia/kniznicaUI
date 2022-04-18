@@ -1,29 +1,48 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Customer} from "../models/customer.model";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-customer-zoznam',
   templateUrl: './customer-zoznam.component.html',
+  providers: [ConfirmationService,MessageService],
   styleUrls: ['./customer-zoznam.component.css']
 })
 export class CustomerZoznamComponent{
+  name ="Zoznam osôb"
   @Input()
   customersz: Customer[] = [];
 
-  constructor() { }
-  @Output()
-  editCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
+  constructor(private zmazPopup: ConfirmationService,  private messageService: MessageService) { }
+
+  vybratiZakaznici: Customer[] = [];
 
   @Output()
-  removeCustomer: EventEmitter<Customer> = new EventEmitter<Customer>();
+  editCustomer: EventEmitter<number> = new EventEmitter<number>();
 
-  edit(customer: Customer): void{
-    this.editCustomer.emit(customer);
+  @Output()
+  removeCustomer: EventEmitter<number> = new EventEmitter<number>();
+
+  edit(id: number): void{
+    this.editCustomer.emit(id);
   }
 
-  remove(customer: Customer): void{
-    this.removeCustomer.emit(customer);
+  remove(id: number): void{
+    this.removeCustomer.emit(id);
+  }
+  vymazVybranychZakaznikov(){
+    this.zmazPopup.confirm({
+      message: 'Odstranit vsetkych oznacených zakaznikov?',
+      header: 'Mazanie',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.vybratiZakaznici.forEach(v => {
+          this.remove(v.id);
+        })
+        this.vybratiZakaznici = null;
+        this.messageService.add({severity:'success', summary: 'Úspešné', detail: 'Zákazníci zmazaní', life: 3000});
+      }
+    });
+  }
   }
 
-
-}

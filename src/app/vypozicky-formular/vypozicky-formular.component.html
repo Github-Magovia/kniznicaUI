@@ -1,13 +1,25 @@
-<div>
-  <div class="container-fluid">
-    Id: <input type="number" [(ngModel)]="vypozicka.id">
-    <br>
-    Kniha:
-    <input type="text" [(ngModel)]="vypozicka.bookId">
-    <br>
-    Pouzivatel:
-    <input type="text" [(ngModel)]="vypozicka.customerId">
+<h2 class="h2 mx-3">{{name}}</h2>
+
+<div class="container-fluid">
+  <form [formGroup]="vypozickyForm">
+    <input type="text" pInputText formControlName="id" readonly placeholder="ID výpožičky (readonly)">
     <br><br>
-    <button mat-raised-button (click)="pridajVypozicku()">PRIDAJ</button>
-  </div>
+    <p-dropdown [options]="knihy" formControlName="bookId" optionLabel="title" optionValue="id" [showClear]="true" placeholder="Vyber knihu">
+      <ng-template let-knihy pTemplate="item">
+        <div class="kniha-item">
+          <div>({{knihy.id}}) {{knihy.title}}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+    <br><br>
+    <p-dropdown [options]="customers" formControlName="customerId" optionLabel="customerName" optionValue="id" [showClear]="true" placeholder="Vyber zákaznika">
+      <ng-template let-customers pTemplate="item">
+        <div class="customers-item">
+          <div>({{customers.id}}) {{customers.customerName}}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+    <br><br>
+    <button pButton pRipple class="p-button p-button-success" [attr.disabled]="vypozickyForm.valid ? null : true" (click)="pridajVypozicku()">Pridaj</button>
+  </form>
 </div>

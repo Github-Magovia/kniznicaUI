@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {waitForAsync} from "@angular/core/testing";
 import {Customer} from "../models/customer.model";
 import {CustomerServiceService} from "../../../customer-service.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-customer-stranka',
   templateUrl: './customer-stranka.component.html',
   styleUrls: ['./customer-stranka.component.css']
 })
-export class CustomerStrankaComponent implements OnInit {
-
+export class CustomerStrankaComponent implements OnInit, OnDestroy {
   customers: Customer[] = [];
+  private sub: Subscription = new Subscription();
+  name ="Osoby";
 
   customerNaUpravu?: Customer;
 
@@ -19,10 +20,14 @@ export class CustomerStrankaComponent implements OnInit {
 
   ngOnInit(): void { this.refreshCustomers(); }
 
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   refreshCustomers(): void {
-    this.customerService.getCustomers().subscribe(data => {
+    this.sub.add(this.customerService.getCustomers().subscribe(data => {
       this.customers = data;
-    });
+    }));
   }
 
   chodSpat(): void {
@@ -30,25 +35,26 @@ export class CustomerStrankaComponent implements OnInit {
   }
 
   pridajCustomer(customer: Customer): void {
-    this.customerService.createCustomer(customer).subscribe( data => {
+    this.sub.add(this.customerService.createCustomer(customer).subscribe( data => {
       this.refreshCustomers();
-    });
+    }));
   }
 
   upravCustomer(customer: Customer): void {
-    this.customerService.updateCustomer(customer.id, customer).subscribe(data => {
+    this.sub.add(this.customerService.updateCustomer(customer.id, customer).subscribe(data => {
       this.refreshCustomers();
-    });
+    }));
   }
 
-  upravZoZoznamu(customer: Customer): void {
-    this.customerNaUpravu = customer;
+  upravZoZoznamu(id: number): void {
+    this.sub.add(this.customerService.getCustomer(id).subscribe(data => {
+      this.customerNaUpravu = data;
+    }));
   }
 
-  zmazZoZoznamu(customer: Customer): void {
-    this.customerService.deleteCustomer(customer.id).subscribe(data => {
+  zmazZoZoznamu(id: number): void {
+    this.sub.add(this.customerService.deleteCustomer(id).subscribe(data => {
       this.refreshCustomers();
-    });
+    }));
   }
-
 }
