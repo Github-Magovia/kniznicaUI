@@ -1,3 +1,4 @@
+<h1 class="h1 d-flex justify-content-center allign-items-center">{{name}}</h1>
 <app-customer-formular  [customer]="customerNaUpravu"
                      (pridajOsobuEmitter)="pridajCustomer($event)"
                      (upravOsobuEmitter)="upravCustomer($event)">
@@ -12,5 +13,5 @@
 <br>
 
 <div>
-  <button (click)="chodSpat()">SPÄŤ</button>
+  <button pButton pRipple class="p-button-rounded p-button-help m-2" (click)="chodSpat()">SPÄŤ</button>
 </div>
