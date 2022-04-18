@@ -1,9 +1,17 @@
-<div class="container-fluid">
+<h2 class="h2 mx-3">{{name}}</h2>
+<p-toast></p-toast>
+
+<div class=" card container-fluid">
+  <p-toolbar styleClass="mb-4">
+  <ng-template pTemplate="left">
+    <button pButton pRipple label="Zmaž vybrané" icon="pi pi-trash" class="p-button-danger" (click)="vymazVybranychZakaznikov()" [disabled]="!vybratiZakaznici || !vybratiZakaznici.length"></button>
+  </ng-template>
+  </p-toolbar>
   ZOZNAM:<br>
   <div *ngIf="!customersz || customersz?.length == 0">
     Zoznam osôb je prázdny.
   </div>
-  <table class="table table-striped">
+  <p-table class="table table-striped">
     <thead>
     <tr>
       <th scope="col">#ID</th>
@@ -22,5 +30,7 @@
       </td>
     </tr>
     </tbody>
-  </table>
+  </p-table>
 </div>
+
+<p-confirmDialog header="Mazanie" [style]="{width: '450px'}"></p-confirmDialog>
